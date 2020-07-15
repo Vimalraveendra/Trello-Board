@@ -5,6 +5,10 @@
 /.pnp
 .pnp.js
 
+# visusalstudiocode #
+.vscode/
+.vscode/settings.json
+
 # testing
 /coverage
 
