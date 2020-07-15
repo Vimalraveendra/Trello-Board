@@ -5,14 +5,62 @@ import TrelloLists from "../Components/TrelloList/TrelloList";
 
 class App extends React.Component {
   state = {
-    cards: [
+    cardList: [
       {
+        title: "To Do List ",
         id: 0,
-        text: "We created a static list & static card",
+        cards: [
+          {
+            id: 0,
+            text: "We created a static list & static card",
+          },
+          {
+            id: 1,
+            text: "We created the second card",
+          },
+        ],
       },
       {
+        title: "Doing",
         id: 1,
-        text: "We created the second card",
+        cards: [
+          {
+            id: 0,
+            text: "We created a static list & static card",
+          },
+          {
+            id: 1,
+            text: "We created the second card",
+          },
+        ],
+      },
+      {
+        title: "Done",
+        id: 2,
+        cards: [
+          {
+            id: 0,
+            text: "We created a static list & static card",
+          },
+          {
+            id: 1,
+            text: "We created the second card",
+          },
+        ],
+      },
+      {
+        title: "Finished",
+        id: 3,
+        cards: [
+          {
+            id: 0,
+            text: "We created a static list & static card",
+          },
+          {
+            id: 1,
+            text: "We created the second card",
+          },
+        ],
       },
     ],
   };
@@ -21,7 +69,11 @@ class App extends React.Component {
       <div className="App">
         <header className="App-header">
           <h2>Trello Board</h2>
-          <TrelloLists title={"Trello List"} cardList={this.state.cards} />
+          <div className="cardList">
+            {this.state.cardList.map(({ id, title, cards }) => {
+              return <TrelloLists key={id} title={title} cardList={cards} />;
+            })}
+          </div>
         </header>
       </div>
     );
