@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./TrelloList.module.css";
 import TrelloCard from "../TrelloCard/TrelloCard";
+import TrelloButton from "../TrelloButton/TrelloButton";
 
 const TrelloLists = ({ title, cardList }) => {
   console.log("card", cardList);
@@ -10,6 +11,7 @@ const TrelloLists = ({ title, cardList }) => {
       {cardList.map(({ id, text }) => {
         return <TrelloCard key={id} text={text} />;
       })}
+      <TrelloButton />
     </div>
   );
 };
