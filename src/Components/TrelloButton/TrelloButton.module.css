@@ -1,0 +1,17 @@
+.buttonContainer {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.list {
+  color: red;
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+.cardList {
+  color: inherit;
+  opacity: 0.5;
+  background-color: inherit;
+}
