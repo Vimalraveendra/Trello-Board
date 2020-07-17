@@ -48,20 +48,6 @@ class App extends React.Component {
           },
         ],
       },
-      {
-        title: "Finished",
-        id: 3,
-        cards: [
-          {
-            id: 0,
-            text: "We created a static list & static card",
-          },
-          {
-            id: 1,
-            text: "We created the second card",
-          },
-        ],
-      },
     ],
   };
   render() {

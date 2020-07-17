@@ -15,3 +15,27 @@
   opacity: 0.5;
   background-color: inherit;
 }
+
+.cardContainer {
+  min-height: 80px;
+}
+.textArea {
+  resize: none;
+  width: 100%;
+  overflow: hidden;
+  outline: none;
+  border: none;
+}
+.buttonGroup {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
+.buttonAdd {
+  color: white !important;
+  background: green !important;
+}
+
+.buttonClose {
+  margin-left: 10px !important;
+}

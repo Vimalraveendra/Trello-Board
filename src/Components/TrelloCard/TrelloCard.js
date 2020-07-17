@@ -5,7 +5,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 
-import TrelloButton from "../TrelloButton/TrelloButton";
+
 
 const TrelloCard = ({ text }) => {
   return (
