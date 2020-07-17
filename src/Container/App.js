@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 
 import TrelloLists from "../Components/TrelloList/TrelloList";
+import TrelloButton from "../Components/TrelloButton/TrelloButton";
 
 class App extends React.Component {
   state = {
@@ -53,14 +54,13 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <h2>Trello Board</h2>
-          <div className="cardList">
-            {this.state.cardList.map(({ id, title, cards }) => {
-              return <TrelloLists key={id} title={title} cardList={cards} />;
-            })}
-          </div>
-        </header>
+        <h2>Trello Board</h2>
+        <div className="cardList">
+          {this.state.cardList.map(({ id, title, cards }) => {
+            return <TrelloLists key={id} title={title} cardList={cards} />;
+          })}
+          <TrelloButton list />
+        </div>
       </div>
     );
   }
