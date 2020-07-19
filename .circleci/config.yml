@@ -6,7 +6,7 @@ jobs:
       - image: circleci/node:10.16.3
     steps:
       - checkout
-      - run: echo "npm installing"
+      - run: echo "yarn installing"
       - run: yarn install
       - run: CI=true  yarn run build
   test:
