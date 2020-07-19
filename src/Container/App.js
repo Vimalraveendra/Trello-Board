@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 
 import TrelloLists from "../Components/TrelloList/TrelloList";
-import TrelloForm from "../Components/TrelloForm/TrelloForm";
+import TrelloFormButton from "../Components/TrelloFormButton/TrelloFormButton";
 
 class App extends React.Component {
   state = {
@@ -59,7 +59,7 @@ class App extends React.Component {
           {this.state.cardList.map(({ id, title, cards }) => {
             return <TrelloLists key={id} title={title} cardList={cards} />;
           })}
-          <TrelloForm list />
+          <TrelloFormButton list />
         </div>
       </div>
     );
