@@ -1,0 +1,35 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: circleci/node:10.16.3
+    steps:
+      - checkout
+      - run: echo "npm installing"
+      - run: yarn install
+      - run: CI=true  yarn run build
+  test:
+    docker:
+      - image: circleci/node:10.16.3
+    steps:
+      - checkout
+      - run: echo "testing stuff"
+      - run: yarn install
+      - run: yarn test
+  hello_test:
+    docker:
+      - image: circleci/node:10.16.3
+    steps:
+      - checkout
+      - run: echo "helloooo!"
+
+workflows:
+  version: 2
+  build_test_and_lint:
+    jobs:
+      - build
+      - hello_test
+      - test:
+          requires:
+            - hello_test
