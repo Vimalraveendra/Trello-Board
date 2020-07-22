@@ -6,7 +6,6 @@ import TrelloForm from "../TrelloForm/TrelloForm";
 class TrelloFormButton extends Component {
   state = {
     formOpen: false,
-    text: "",
   };
 
   onClickOpenForm = () => {
@@ -16,25 +15,34 @@ class TrelloFormButton extends Component {
   closeForm = () => {
     this.setState({ formOpen: false });
   };
+  //  onmousedown event occurs before the onblur event
+  // if we use the onClick event instead of onmousedown,
+  // the onblur events happens before onclick so we are
+  // not able to add the title to the list
 
-  onTextAreaChange = (e) => {
-    const target = e.target.value;
-    console.log("tar", target);
-    this.setState({ text: target });
-  };
+  // onTextAreaChange = (e) => {
+  //   const target = e.target.value;
+  //   console.log("tar", target);
+  //   this.setState({ text: target });
+  // };
 
   render() {
+    console.log("text", this.props.text);
+    const { text } = this.props;
+
     return this.state.formOpen ? (
       <TrelloForm
         list={this.props.list}
-        text={this.state.text}
+        text={text}
         closeForm={this.closeForm}
-        onTextAreaChange={this.onTextAreaChange}
+        onTextAreaChange={this.props.onTextAreaChange}
+        handleAddList={this.props.handleAddList}
       />
     ) : (
       <TrelloButton
         list={this.props.list}
         onClickOpenForm={this.onClickOpenForm}
+        handleAddCard={this.props.handleAddCard}
       />
     );
   }

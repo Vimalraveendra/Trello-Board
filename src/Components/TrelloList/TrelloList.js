@@ -4,7 +4,6 @@ import TrelloCard from "../TrelloCard/TrelloCard";
 import TrelloFormButton from "../TrelloFormButton/TrelloFormButton";
 
 const TrelloLists = ({ title, cardList }) => {
-  console.log("card", cardList);
   return (
     <div className={styles.container}>
       <h4>{title}</h4>
