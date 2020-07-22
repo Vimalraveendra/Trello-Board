@@ -89,9 +89,9 @@ class App extends React.Component {
     };
 
     const updatedCard = cardList.map((card) => {
-      if (card.id === listId) {
-        return [...cardList.cards, newCard];
-      }
+      // if (card.id === listId) {
+      //   cards:[...cardList.cards, newCard]
+      // }
       this.setState({
         cards: updatedCard,
         text: "",
