@@ -6,6 +6,9 @@ import TrelloFormButton from "../Components/TrelloFormButton/TrelloFormButton";
 
 class App extends React.Component {
   state = {
+    listId: 3,
+    cardId: 2,
+    text: "",
     cardList: [
       {
         title: "To Do List ",
@@ -51,7 +54,53 @@ class App extends React.Component {
       },
     ],
   };
+
+  onTextAreaChange = (e) => {
+    const target = e.target.value;
+    console.log("tar", target);
+    this.setState({ text: target });
+  };
+  handleAddList = () => {
+    const { text, listId } = this.state;
+
+    if (text) {
+      const newList = {
+        title: text,
+        cards: [],
+        id: listId,
+      };
+
+      const updatedItems = [...this.state.cardList, newList];
+      this.setState({
+        cardList: updatedItems,
+        text: "",
+        id: listId + 1,
+      });
+    } else {
+      return;
+    }
+  };
+
+  handleAddCard = () => {
+    const { text, cardId, cardList, listId } = this.state;
+    const newCard = {
+      id: cardId,
+      text: text,
+    };
+
+    const updatedCard = cardList.map((card) => {
+      if (card.id === listId) {
+        return [...cardList.cards, newCard];
+      }
+      this.setState({
+        cards: updatedCard,
+        text: "",
+        id: cardId + 1,
+      });
+    });
+  };
   render() {
+    console.log("cardList", this.state.cardList);
     return (
       <div className="App">
         <h2>Trello Board</h2>
@@ -59,7 +108,13 @@ class App extends React.Component {
           {this.state.cardList.map(({ id, title, cards }) => {
             return <TrelloLists key={id} title={title} cardList={cards} />;
           })}
-          <TrelloFormButton list />
+          <TrelloFormButton
+            list
+            handleAddList={this.handleAddList}
+            text={this.state.text}
+            onTextAreaChange={this.onTextAreaChange}
+            handleAddCard={this.handleAddCard}
+          />
         </div>
       </div>
     );

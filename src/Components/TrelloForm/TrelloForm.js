@@ -7,7 +7,14 @@ import TextareaAutosize from "react-textarea-autosize";
 
 import styles from "./TrelloForm.module.css";
 
-const TrelloForm = ({ list, closeForm, text, onTextAreaChange }) => {
+const TrelloForm = ({
+  list,
+  closeForm,
+  text,
+  onTextAreaChange,
+  handleAddList,
+}) => {
+  console.log("text1", text);
   const placeholder = list
     ? `Enter list title...`
     : `Enter a title for this card`;
@@ -25,7 +32,11 @@ const TrelloForm = ({ list, closeForm, text, onTextAreaChange }) => {
         />
       </Card>
       <div className={styles.buttonGroup}>
-        <Button variant="contained" className={styles.buttonAdd}>
+        <Button
+          variant="contained"
+          className={styles.buttonAdd}
+          onMouseDown={handleAddList}
+        >
           {buttonTitle}
         </Button>
         <Button
