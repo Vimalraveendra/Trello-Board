@@ -15,7 +15,6 @@ const TrelloForm = ({
   handleAddList,
   handleAddCard,
 }) => {
-  console.log("text1", text);
   const placeholder = list
     ? `Enter list title...`
     : `Enter a title for this card`;

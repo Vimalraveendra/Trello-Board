@@ -6,7 +6,6 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 
 const TrelloCard = ({ text }) => {
-  console.log("text", text);
   return (
     <Card className={styles.cardContainer}>
       <CardContent>

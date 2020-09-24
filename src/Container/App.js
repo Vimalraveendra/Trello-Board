@@ -7,7 +7,7 @@ import TrelloFormButton from "../Components/TrelloFormButton/TrelloFormButton";
 class App extends React.Component {
   state = {
     listId: 3,
-    cardId: 2,
+    cardId: 4,
     text: "",
     cardList: [
       {
@@ -34,6 +34,14 @@ class App extends React.Component {
           },
           {
             id: 1,
+            text: "We created the second card",
+          },
+          {
+            id: 2,
+            text: "We created a static list & static card",
+          },
+          {
+            id: 3,
             text: "We created the second card",
           },
         ],
@@ -101,14 +109,20 @@ class App extends React.Component {
     });
   };
   render() {
-    console.log("cardList", this.state.cardList);
-    console.log("card", this.state.text);
+    console.log("text", this.state.text);
     return (
       <div className="App">
         <h2>Trello Board</h2>
         <div className="cardList">
           {this.state.cardList.map(({ id, title, cards }) => {
-            return <TrelloLists key={id} title={title} cardList={cards} />;
+            return (
+              <TrelloLists
+                key={id}
+                title={title}
+                cardList={cards}
+                onTextAreaChange={this.onTextAreaChange}
+              />
+            );
           })}
           <TrelloFormButton
             list

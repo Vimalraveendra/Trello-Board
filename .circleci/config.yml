@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run: echo "yarn installing"
       - run: yarn install
-      - run: CI=true  yarn run build
+      - run: yarn run build
   test:
     docker:
       - image: circleci/node:10.16.3
@@ -28,8 +28,8 @@ workflows:
   version: 2
   build_test_and_lint:
     jobs:
-      - build:
-      - hello_test:
+      - build
+      - hello_test
       - test:
           requires:
             - hello_test

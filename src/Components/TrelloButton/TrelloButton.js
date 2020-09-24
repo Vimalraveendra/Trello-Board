@@ -10,7 +10,7 @@ const TrelloButton = ({ list, onClickOpenForm }) => {
     <div
       onClick={onClickOpenForm}
       className={`${styles.buttonContainer}
-      {list ? styles.list : styles.cardList}`}
+      ${list ? styles.list : styles.cardList}`}
     >
       <Icon>add</Icon>
       <p>{buttonText}</p>
