@@ -88,10 +88,11 @@ class App extends React.Component {
       text: text,
     };
 
-    const updatedCard = cardList.map((card) => {
-      // if (card.id === listId) {
-      //   cards:[...cardList.cards, newCard]
-      // }
+    const updatedCard = cardList.map((cardList) => {
+      if (cardList.id === listId) {
+        return [...cardList.cards, newCard];
+      }
+      console.log("ud", updatedCard);
       this.setState({
         cards: updatedCard,
         text: "",
@@ -101,6 +102,7 @@ class App extends React.Component {
   };
   render() {
     console.log("cardList", this.state.cardList);
+    console.log("card", this.state.text);
     return (
       <div className="App">
         <h2>Trello Board</h2>
