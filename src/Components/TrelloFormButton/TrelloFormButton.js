@@ -37,12 +37,12 @@ class TrelloFormButton extends Component {
         closeForm={this.closeForm}
         onTextAreaChange={this.props.onTextAreaChange}
         handleAddList={this.props.handleAddList}
+        handleAddCard={this.props.handleAddCard}
       />
     ) : (
       <TrelloButton
         list={this.props.list}
         onClickOpenForm={this.onClickOpenForm}
-        handleAddCard={this.props.handleAddCard}
       />
     );
   }

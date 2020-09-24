@@ -13,12 +13,14 @@ const TrelloForm = ({
   text,
   onTextAreaChange,
   handleAddList,
+  handleAddCard,
 }) => {
   console.log("text1", text);
   const placeholder = list
     ? `Enter list title...`
     : `Enter a title for this card`;
   const buttonTitle = list ? `Add List` : `Add Card`;
+
   return (
     <div>
       <Card className={styles.cardContainer}>
@@ -35,7 +37,7 @@ const TrelloForm = ({
         <Button
           variant="contained"
           className={styles.buttonAdd}
-          onMouseDown={handleAddList}
+          onMouseDown={list ? handleAddList : handleAddCard}
         >
           {buttonTitle}
         </Button>
