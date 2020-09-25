@@ -14,6 +14,7 @@ const TrelloForm = ({
   onTextAreaChange,
   handleAddList,
   handleAddCard,
+  id,
 }) => {
   const placeholder = list
     ? `Enter list title...`
@@ -36,7 +37,7 @@ const TrelloForm = ({
         <Button
           variant="contained"
           className={styles.buttonAdd}
-          onMouseDown={list ? handleAddList : handleAddCard}
+          onMouseDown={list ? handleAddList : () => handleAddCard(id)}
         >
           {buttonTitle}
         </Button>

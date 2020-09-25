@@ -65,7 +65,7 @@ class App extends React.Component {
 
   onTextAreaChange = (e) => {
     const target = e.target.value;
-    console.log("tar", target);
+
     this.setState({ text: target });
   };
   handleAddList = () => {
@@ -82,34 +82,42 @@ class App extends React.Component {
       this.setState({
         cardList: updatedItems,
         text: "",
-        id: listId + 1,
+        listId: listId + 1,
       });
     } else {
       return;
     }
   };
 
-  handleAddCard = () => {
-    const { text, cardId, cardList, listId } = this.state;
-    const newCard = {
-      id: cardId,
-      text: text,
-    };
+  handleAddCard = (id) => {
+    const { text, cardId, cardList } = this.state;
+    if (text) {
+      const newCard = {
+        id: cardId,
+        text: text,
+      };
 
-    const updatedCard = cardList.map((cardList) => {
-      if (cardList.id === listId) {
-        return [...cardList.cards, newCard];
-      }
-      console.log("ud", updatedCard);
-      this.setState({
-        cards: updatedCard,
-        text: "",
-        id: cardId + 1,
+      const updatedCard = cardList.map((card) => {
+        if (card.id === id) {
+          return {
+            ...card,
+            cards: [...card.cards, newCard],
+          };
+        } else {
+          return card;
+        }
       });
-    });
+
+      this.setState({
+        cardList: updatedCard,
+        text: "",
+        cardId: cardId + 1,
+      });
+    } else {
+      return;
+    }
   };
   render() {
-    console.log("text", this.state.text);
     return (
       <div className="App">
         <h2>Trello Board</h2>
@@ -119,8 +127,10 @@ class App extends React.Component {
               <TrelloLists
                 key={id}
                 title={title}
+                id={id}
                 cardList={cards}
                 onTextAreaChange={this.onTextAreaChange}
+                handleAddCard={this.handleAddCard}
               />
             );
           })}

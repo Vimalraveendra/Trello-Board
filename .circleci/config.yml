@@ -9,14 +9,7 @@ jobs:
       - run: echo "yarn installing"
       - run: yarn install
       - run: yarn run build
-  test:
-    docker:
-      - image: circleci/node:10.16.3
-    steps:
-      - checkout
-      - run: echo "testing stuff"
-      - run: yarn install
-      - run: yarn test
+
   hello_test:
     docker:
       - image: circleci/node:10.16.3
@@ -30,6 +23,3 @@ workflows:
     jobs:
       - build
       - hello_test
-      - test:
-          requires:
-            - hello_test
