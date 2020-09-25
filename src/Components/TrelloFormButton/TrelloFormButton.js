@@ -27,16 +27,24 @@ class TrelloFormButton extends Component {
   // };
 
   render() {
-    const { text, list } = this.props;
+    const {
+      text,
+      list,
+      id,
+      handleAddCard,
+      handleAddList,
+      onTextAreaChange,
+    } = this.props;
 
     return this.state.formOpen ? (
       <TrelloForm
         list={list}
         text={text}
+        id={id}
         closeForm={this.closeForm}
-        onTextAreaChange={this.props.onTextAreaChange}
-        handleAddList={this.props.handleAddList}
-        handleAddCard={this.props.handleAddCard}
+        onTextAreaChange={onTextAreaChange}
+        handleAddList={handleAddList}
+        handleAddCard={handleAddCard}
       />
     ) : (
       <TrelloButton
