@@ -23,7 +23,7 @@ const TrelloForm = ({
 
   return (
     <div>
-      <Card className={styles.cardContainer}>
+      <Card>
         <TextareaAutosize
           className={styles.textArea}
           placeholder={placeholder}
