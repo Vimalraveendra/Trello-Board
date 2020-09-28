@@ -1,5 +1,6 @@
 import React from "react";
-import styles from "./TrelloCard.module.css";
+// import Styles from './TrelloCard.modules.css'
+import { CardContainer } from "./TrelloCard.styles";
 
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -10,17 +11,17 @@ const TrelloCard = ({ text, id, index }) => {
   return (
     <Draggable draggableId={String(id)} index={index}>
       {(provided) => (
-        <div
+        <CardContainer
           {...provided.dragHandleProps}
           {...provided.draggableProps}
           ref={provided.innerRef}
         >
-          <Card className={styles.cardContainer}>
+          <Card>
             <CardContent>
-              <Typography>{text}</Typography>
+              <Typography gutterBottom>{text}</Typography>
             </CardContent>
           </Card>
-        </div>
+        </CardContainer>
       )}
     </Draggable>
   );
