@@ -119,20 +119,26 @@ class App extends React.Component {
     }
   };
 
-  onDragEnd(result) {
+  reorder = () => {};
+
+  onDragEnd = (result) => {
+    const { destination, source } = result;
     // dropped outside the list
-    // if (!result.destination) {
-    //   return;
-    // }
-    // const items = reorder(
-    //   this.state.items,
-    //   result.source.index,
-    //   result.destination.index
-    // );
-    // this.setState({
-    //   items,
-    // });
-  }
+    if (!destination) {
+      return;
+    }
+    // dropped inside the same list
+    if (destination.droppableId === source.droppableId) {
+      const newState = [...this.state.cardList];
+      const list = newState.find(
+        (list) => source.droppableId === list.id.toString()
+      );
+      // removing the item from the list
+      const card = list.cards.splice(source.index, 1);
+      // inserting the item into the proper position of list
+      list.cards.splice(destination.index, 0, ...card);
+    }
+  };
   render() {
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
