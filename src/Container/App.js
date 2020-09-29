@@ -128,16 +128,34 @@ class App extends React.Component {
     if (!destination) {
       return;
     }
-    // dropped inside the same list
-    if (destination.droppableId === source.droppableId) {
+    // card dropped inside the same list
+    if (source.droppableId === destination.droppableId) {
       const newState = [...this.state.cardList];
       const list = newState.find(
         (list) => source.droppableId === list.id.toString()
       );
-      // removing the item from the list
+      // removing the card from the cardList
       const card = list.cards.splice(source.index, 1);
-      // inserting the item into the proper position of list
+      // inserting the card into the proper position of cardList
       list.cards.splice(destination.index, 0, ...card);
+    }
+
+    // card dropped inside other list
+    if (destination.droppableId !== source.droppableId) {
+      const newState = [...this.state.cardList];
+
+      // find the list where drag happened
+      const listStart = newState.find(
+        (list) => source.droppableId === list.id.toString()
+      );
+      // pull out the card from the list
+      const card = listStart.cards.splice(source.index, 1);
+      // find the list where drag ended.
+      const listEnd = newState.find(
+        (list) => destination.droppableId === list.id.toString()
+      );
+      //  insert the card into that list
+      listEnd.cards.splice(destination.index, 0, ...card);
     }
   };
   render() {
