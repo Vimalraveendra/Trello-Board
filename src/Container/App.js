@@ -1,10 +1,8 @@
 import React from "react";
-import "./App.styles.jsx";
 
-import TrelloLists from "../Components/TrelloList/TrelloList";
-import TrelloFormButton from "../Components/TrelloFormButton/TrelloFormButton";
 import { DragDropContext } from "react-beautiful-dnd";
-import { CardList } from "./App.styles";
+
+import MainList from "../Components/MainList/MainList";
 
 class App extends React.Component {
   state = {
@@ -169,29 +167,11 @@ class App extends React.Component {
       <DragDropContext onDragEnd={this.onDragEnd}>
         <div>
           <h2>Trello Board</h2>
-          <CardList>
-            {this.state.cardList.map(({ id, title, cards }, index) => {
-              return (
-                <TrelloLists
-                  key={id}
-                  title={title}
-                  id={id}
-                  cardList={cards}
-                  onTextAreaChange={this.onTextAreaChange}
-                  handleAddCard={this.handleAddCard}
-                  index={index}
-                />
-              );
-            })}
-
-            <TrelloFormButton
-              list
-              handleAddList={this.handleAddList}
-              text={this.state.text}
-              onTextAreaChange={this.onTextAreaChange}
-              handleAddCard={this.handleAddCard}
-            />
-          </CardList>
+          <MainList
+            cardList={this.state.cardList}
+            onTextAreaChange={this.onTextAreaChange}
+            handleAddCard={this.handleAddCard}
+          />
         </div>
       </DragDropContext>
     );
