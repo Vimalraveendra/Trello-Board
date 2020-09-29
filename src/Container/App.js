@@ -3,64 +3,14 @@ import React from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 
 import MainList from "../Components/MainList/MainList";
+import Data from "../Data/Data";
 
 class App extends React.Component {
   state = {
     listId: 3,
     cardId: 8,
     text: "",
-    cardList: [
-      {
-        title: "To Do List ",
-        id: 0,
-        cards: [
-          {
-            id: 0,
-            text: "We created a static list & static card",
-          },
-          {
-            id: 1,
-            text: "We created the second card",
-          },
-        ],
-      },
-      {
-        title: "Doing",
-        id: 1,
-        cards: [
-          {
-            id: 2,
-            text: "We created a static list & static card",
-          },
-          {
-            id: 3,
-            text: "We created the second card",
-          },
-          {
-            id: 4,
-            text: "We created a static list & static card",
-          },
-          {
-            id: 5,
-            text: "We created the second card",
-          },
-        ],
-      },
-      {
-        title: "Done",
-        id: 2,
-        cards: [
-          {
-            id: 6,
-            text: "We created a static list & static card",
-          },
-          {
-            id: 7,
-            text: "We created the second card",
-          },
-        ],
-      },
-    ],
+    cardList: Data,
   };
 
   onTextAreaChange = (e) => {
