@@ -120,30 +120,36 @@ class App extends React.Component {
     }
   };
 
-  reorder = () => {};
-
   onDragEnd = (result) => {
     const { destination, source } = result;
+    const newState = [...this.state.cardList];
+
     // dropped outside the list
     if (!destination) {
       return;
     }
+
+    //  dragging list around
+    if (source.droppableId === "all-lists") {
+      const list = newState.splice(source.index, 1);
+      newState.splice(destination.index, 0, ...list);
+      this.setState({ cardList: newState });
+    }
     // card dropped inside the same list
     if (source.droppableId === destination.droppableId) {
-      const newState = [...this.state.cardList];
       const list = newState.find(
         (list) => source.droppableId === list.id.toString()
       );
-      // removing the card from the cardList
-      const card = list.cards.splice(source.index, 1);
-      // inserting the card into the proper position of cardList
-      list.cards.splice(destination.index, 0, ...card);
-    }
 
+      if (list !== undefined) {
+        // removing the card from the cardList
+        const card = list.cards.splice(source.index, 1);
+        // inserting the card into the proper position of cardList
+        list.cards.splice(destination.index, 0, ...card);
+      }
+    }
     // card dropped inside other list
     if (destination.droppableId !== source.droppableId) {
-      const newState = [...this.state.cardList];
-
       // find the list where drag happened
       const listStart = newState.find(
         (list) => source.droppableId === list.id.toString()
@@ -164,7 +170,7 @@ class App extends React.Component {
         <div>
           <h2>Trello Board</h2>
           <CardList>
-            {this.state.cardList.map(({ id, title, cards }) => {
+            {this.state.cardList.map(({ id, title, cards }, index) => {
               return (
                 <TrelloLists
                   key={id}
@@ -173,9 +179,11 @@ class App extends React.Component {
                   cardList={cards}
                   onTextAreaChange={this.onTextAreaChange}
                   handleAddCard={this.handleAddCard}
+                  index={index}
                 />
               );
             })}
+
             <TrelloFormButton
               list
               handleAddList={this.handleAddList}

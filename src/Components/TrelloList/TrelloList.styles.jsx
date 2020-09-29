@@ -8,3 +8,10 @@ export const ListContainer = styled.div`
   height: 100%;
   margin-right: 8px;
 `;
+
+export const ListTitle = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
