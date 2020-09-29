@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   cursor: pointer;
-  height: 10px;
+  max-height: 0px;
   width: 250px;
   padding: 20px;
 }
