@@ -11,6 +11,9 @@ const MainList = ({
   handleAddCard,
   handleAddList,
   handleDeleteList,
+  handleEditList,
+  updateListTitle,
+  focusTextInput,
 }) => {
   return (
     <CardList>
@@ -25,6 +28,9 @@ const MainList = ({
             handleAddCard={handleAddCard}
             index={index}
             handleDeleteList={handleDeleteList}
+            handleEditList={handleEditList}
+            updateListTitle={updateListTitle}
+            focusTextInput={focusTextInput}
           />
         );
       })}

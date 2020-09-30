@@ -22,3 +22,10 @@ export const ListIcon = styled.div`
     color: rgba(0, 0, 0, 0.8);
   }
 `;
+
+export const ListEdit = styled.div`
+ 
+  flex-direction:row;
+  justify-content:space-between
+  align-items: center;
+`;
