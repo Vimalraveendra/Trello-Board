@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 // import Styles from './Trello.modules.css'
 import {
   ListContainer,
@@ -11,70 +11,73 @@ import TrelloFormButton from "../TrelloFormButton/TrelloFormButton";
 import { Droppable } from "react-beautiful-dnd";
 import { Icon } from "@material-ui/core";
 
-class TrelloLists extends React.Component {
-  state = {
-    isEdit: false,
-  };
+const TrelloLists = ({
+  title,
+  cardList,
+  onTextAreaChange,
+  id,
+  handleAddCard,
+  handleDeleteList,
+  // handleEditList,
+  // index,
+  changeEditMode,
+  updateListTitle,
+  isEdit,
+}) => {
   // textInput = React.createRef();
-  changeEditMode = (e) => {
-    this.setState({ isEdit: !this.state.isEdit });
-  };
+  const textInput = useRef(null);
 
-  renderEditView = () => {
+  const renderEditView = (id) => {
     return (
       <ListEdit>
         <input
           type="text"
-          value={this.props.title}
-          // ref={this.textInput}
-          onChange={this.props.focusTextInput}
+          defaultValue={title}
+          ref={textInput}
+          // onChange={this.props.focusTextInput}
         />
-        <Icon onClick={this.changeEditMode}>close</Icon>
-        <Icon onClick={() => this.props.updateListTitle()}>add</Icon>
+
+        <Icon
+          onClick={() => updateListTitle(textInput, id)}
+          style={{ color: "green" }}
+        >
+          check
+        </Icon>
+        <Icon onClick={changeEditMode} color="secondary">
+          close
+        </Icon>
       </ListEdit>
     );
   };
-  render() {
-    const {
-      title,
-      cardList,
-      onTextAreaChange,
-      id,
-      handleAddCard,
-      handleDeleteList,
-      // handleEditList,
-      // index,
-    } = this.props;
 
-    return (
-      <Droppable droppableId={String(id)}>
-        {(provided) => (
-          <ListContainer {...provided.droppableProps} ref={provided.innerRef}>
-            <ListTitle>
-              {this.state.isEdit ? (
-                this.renderEditView()
-              ) : (
-                <h4 onClick={() => this.changeEditMode(title)}>{title}</h4>
-              )}
+  return (
+    <Droppable droppableId={String(id)}>
+      {(provided) => (
+        <ListContainer {...provided.droppableProps} ref={provided.innerRef}>
+          <ListTitle>
+            {isEdit ? (
+              renderEditView(id)
+            ) : (
+              <h4 onClick={changeEditMode}>{title}</h4>
+            )}
 
-              <ListIcon>
-                <Icon onClick={() => handleDeleteList(id)}>close</Icon>
-              </ListIcon>
-            </ListTitle>
-            {cardList.map(({ id, text }, index) => {
-              return <TrelloCard key={id} text={text} id={id} index={index} />;
-            })}
-            <TrelloFormButton
-              onTextAreaChange={onTextAreaChange}
-              id={id}
-              handleAddCard={handleAddCard}
-            />
-            {provided.placeholder}
-          </ListContainer>
-        )}
-      </Droppable>
-    );
-  }
-}
+            <ListIcon>
+              <Icon onClick={() => handleDeleteList(id)}>close</Icon>
+            </ListIcon>
+          </ListTitle>
+          {cardList.map(({ id, text }, index) => {
+            return <TrelloCard key={id} text={text} id={id} index={index} />;
+          })}
+          <TrelloFormButton
+            onTextAreaChange={onTextAreaChange}
+            id={id}
+            handleAddCard={handleAddCard}
+          />
+          {provided.placeholder}
+        </ListContainer>
+      )}
+    </Droppable>
+  );
+};
 
 export default TrelloLists;
