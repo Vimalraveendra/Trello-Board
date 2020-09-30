@@ -68,6 +68,14 @@ class App extends React.Component {
     }
   };
 
+  handleDeleteList = (id) => {
+    console.log("id", id);
+    const newState = [...this.state.cardList];
+    const updatedList = newState.filter((list) => list.id !== id);
+
+    this.setState({ cardList: updatedList });
+  };
+
   onDragEnd = (result) => {
     const { destination, source } = result;
     const newState = [...this.state.cardList];
@@ -121,6 +129,8 @@ class App extends React.Component {
             cardList={this.state.cardList}
             onTextAreaChange={this.onTextAreaChange}
             handleAddCard={this.handleAddCard}
+            handleAddList={this.handleAddList}
+            handleDeleteList={this.handleDeleteList}
           />
         </div>
       </DragDropContext>
