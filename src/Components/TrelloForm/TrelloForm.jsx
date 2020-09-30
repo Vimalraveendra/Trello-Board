@@ -37,7 +37,7 @@ const TrelloForm = ({
         <Button
           variant="contained"
           className={styles.buttonAdd}
-          onMouseDown={list ? handleAddList : () => handleAddCard(id)}
+          onMouseDown={list ? () => handleAddList() : () => handleAddCard(id)}
         >
           {buttonTitle}
         </Button>

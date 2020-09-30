@@ -69,11 +69,21 @@ class App extends React.Component {
   };
 
   handleDeleteList = (id) => {
-    console.log("id", id);
     const newState = [...this.state.cardList];
     const updatedList = newState.filter((list) => list.id !== id);
 
     this.setState({ cardList: updatedList });
+  };
+
+  updateListTitle = (e) => {
+    console.log("hello", this.textInput.current.value);
+    this.setState({
+      isEdit: false,
+      title: e.target.value,
+    });
+  };
+  focusTextInput = (e) => {
+    console.log(e);
   };
 
   onDragEnd = (result) => {
@@ -131,6 +141,9 @@ class App extends React.Component {
             handleAddCard={this.handleAddCard}
             handleAddList={this.handleAddList}
             handleDeleteList={this.handleDeleteList}
+            handleEditList={this.handleEditList}
+            updateListTitle={this.updateListTitle}
+            focusTextInput={this.focusTextInput}
           />
         </div>
       </DragDropContext>
