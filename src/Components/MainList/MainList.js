@@ -10,6 +10,7 @@ const MainList = ({
   onTextAreaChange,
   handleAddCard,
   handleAddList,
+  handleDeleteList,
 }) => {
   return (
     <CardList>
@@ -23,6 +24,7 @@ const MainList = ({
             onTextAreaChange={onTextAreaChange}
             handleAddCard={handleAddCard}
             index={index}
+            handleDeleteList={handleDeleteList}
           />
         );
       })}

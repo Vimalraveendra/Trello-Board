@@ -1,6 +1,6 @@
 import React from "react";
 // import Styles from './Trello.modules.css'
-import { ListContainer, ListTitle } from "./TrelloList.styles";
+import { ListContainer, ListTitle, ListIcon } from "./TrelloList.styles";
 import TrelloCard from "../TrelloCard/TrelloCard";
 import TrelloFormButton from "../TrelloFormButton/TrelloFormButton";
 import { Droppable } from "react-beautiful-dnd";
@@ -12,6 +12,7 @@ const TrelloLists = ({
   onTextAreaChange,
   id,
   handleAddCard,
+  handleDeleteList,
   index,
 }) => {
   return (
@@ -20,7 +21,10 @@ const TrelloLists = ({
         <ListContainer {...provided.droppableProps} ref={provided.innerRef}>
           <ListTitle>
             <h4>{title}</h4>
-            <Icon>close</Icon>
+            <ListIcon>
+              <Icon>edit</Icon>
+              <Icon onClick={() => handleDeleteList(id)}>close</Icon>
+            </ListIcon>
           </ListTitle>
           {cardList.map(({ id, text }, index) => {
             return <TrelloCard key={id} text={text} id={id} index={index} />;
