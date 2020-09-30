@@ -10,7 +10,9 @@ class App extends React.Component {
     listId: 3,
     cardId: 8,
     text: "",
+    isEdit: false,
     cardList: Data,
+    value: "",
   };
 
   onTextAreaChange = (e) => {
@@ -75,15 +77,24 @@ class App extends React.Component {
     this.setState({ cardList: updatedList });
   };
 
-  updateListTitle = (e) => {
-    console.log("hello", this.textInput.current.value);
+  updateListTitle = (textInput, id) => {
+    const newState = [...this.state.cardList];
+    const updatedTitle = newState.map((item) =>
+      item.id === id
+        ? (item = { title: textInput.current.value, id: id, cards: item.cards })
+        : item
+    );
+
     this.setState({
       isEdit: false,
-      title: e.target.value,
+      cardList: updatedTitle,
     });
   };
-  focusTextInput = (e) => {
+
+  changeEditMode = (e) => {
     console.log(e);
+
+    this.setState({ isEdit: !this.state.isEdit });
   };
 
   onDragEnd = (result) => {
@@ -144,6 +155,8 @@ class App extends React.Component {
             handleEditList={this.handleEditList}
             updateListTitle={this.updateListTitle}
             focusTextInput={this.focusTextInput}
+            isEdit={this.state.isEdit}
+            changeEditMode={this.changeEditMode}
           />
         </div>
       </DragDropContext>

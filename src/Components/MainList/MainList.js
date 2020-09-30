@@ -14,6 +14,8 @@ const MainList = ({
   handleEditList,
   updateListTitle,
   focusTextInput,
+  isEdit,
+  changeEditMode,
 }) => {
   return (
     <CardList>
@@ -31,6 +33,8 @@ const MainList = ({
             handleEditList={handleEditList}
             updateListTitle={updateListTitle}
             focusTextInput={focusTextInput}
+            isEdit={isEdit}
+            changeEditMode={changeEditMode}
           />
         );
       })}
