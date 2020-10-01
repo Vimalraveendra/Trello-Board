@@ -16,28 +16,31 @@ const MainList = ({
   focusTextInput,
   isEdit,
   changeEditMode,
+  handleFocus,
 }) => {
   return (
     <CardList>
-      {cardList.map(({ id, title, cards }, index) => {
-        return (
-          <TrelloLists
-            key={id}
-            title={title}
-            id={id}
-            cardList={cards}
-            onTextAreaChange={onTextAreaChange}
-            handleAddCard={handleAddCard}
-            index={index}
-            handleDeleteList={handleDeleteList}
-            handleEditList={handleEditList}
-            updateListTitle={updateListTitle}
-            focusTextInput={focusTextInput}
-            isEdit={isEdit}
-            changeEditMode={changeEditMode}
-          />
-        );
-      })}
+      {cardList &&
+        cardList.map(({ id, title, cards }, index) => {
+          return (
+            <TrelloLists
+              key={id}
+              title={title}
+              id={id}
+              cardList={cards}
+              onTextAreaChange={onTextAreaChange}
+              handleAddCard={handleAddCard}
+              index={index}
+              handleDeleteList={handleDeleteList}
+              handleEditList={handleEditList}
+              updateListTitle={updateListTitle}
+              focusTextInput={focusTextInput}
+              isEdit={isEdit}
+              changeEditMode={changeEditMode}
+              handleFocus={handleFocus}
+            />
+          );
+        })}
 
       <TrelloFormButton
         list
