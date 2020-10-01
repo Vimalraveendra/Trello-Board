@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
 // import Styles from './Trello.modules.css'
 import {
   ListContainer,
@@ -20,25 +20,43 @@ const TrelloLists = ({
   handleDeleteList,
   // handleEditList,
   // index,
-  changeEditMode,
+  // changeEditMode,
   updateListTitle,
-  isEdit,
+  // isEdit,
+  // handleFocus,
 }) => {
   // textInput = React.createRef();
-  const textInput = useRef(null);
+  // const textInput = useRef(null);
+  const [isEdit, setIsEdit] = useState(false);
+  const [listTitle, setListTitle] = useState(title);
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setListTitle(value);
+  };
+
+  const changeEditMode = () => {
+    setIsEdit(!isEdit);
+  };
+
+  const handleFocus = (e) => {
+    e.target.focus();
+  };
 
   const renderEditView = (id) => {
     return (
       <ListEdit>
         <input
           type="text"
-          defaultValue={title}
-          ref={textInput}
-          // onChange={this.props.focusTextInput}
+          value={listTitle}
+          // ref={textInput}
+          onChange={handleChange}
+          autoFocus
+          onFocus={handleFocus}
         />
 
         <Icon
-          onClick={() => updateListTitle(textInput, id)}
+          onClick={() => updateListTitle(listTitle, id)}
           style={{ color: "green" }}
         >
           check
