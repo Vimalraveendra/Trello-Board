@@ -20,7 +20,7 @@ const TrelloCard = ({ text, id, index }) => {
           <Card>
             <CardTitle>
               <Typography>{text}</Typography>
-              <CardIcon style={{ fontSize: 18 }}>edit</CardIcon>
+              <CardIcon style={{ fontsize: 15 }}>edit</CardIcon>
             </CardTitle>
           </Card>
         </CardContainer>
