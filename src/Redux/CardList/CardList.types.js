@@ -1,0 +1,7 @@
+const cardListActionTypes = {
+  HANDLE_ADD_LIST: "HANDLE_ADD_LIST",
+  HANDLE_DELETE_LIST: "HANDLE_DELETE_LIST",
+  HANDLE_UPDATE_LIST_TITLE: "HANDLE_UPDATE_LIST_TITLE",
+};
+
+export default cardListActionTypes;
