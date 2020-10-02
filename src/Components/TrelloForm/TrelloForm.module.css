@@ -1,6 +1,6 @@
 .cardContainer {
   min-height: 80px;
-  min-width: 300px;
+  width: 300px;
   padding: 6px 8px 2px;
 }
 .textArea {

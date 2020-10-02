@@ -1,11 +1,17 @@
 import React from "react";
 
 import Card from "@material-ui/core/Card";
-import Button from "@material-ui/core/Button";
+// import Button from "@material-ui/core/Button";
 import DeleteIcon from "@material-ui/icons/Delete";
-import TextareaAutosize from "react-textarea-autosize";
+// import TextareaAutosize from "react-textarea-autosize";
 
-import styles from "./TrelloForm.module.css";
+// import styles from "./TrelloForm.module.css";
+import {
+  CardTextArea,
+  ButtonGroup,
+  ButtonAdd,
+  ButtonClose,
+} from "./TrelloForm.styles";
 
 const TrelloForm = ({
   list,
@@ -24,8 +30,7 @@ const TrelloForm = ({
   return (
     <div>
       <Card>
-        <TextareaAutosize
-          className={styles.textArea}
+        <CardTextArea
           placeholder={placeholder}
           autoFocus
           onBlur={closeForm}
@@ -33,23 +38,21 @@ const TrelloForm = ({
           onChange={onTextAreaChange}
         />
       </Card>
-      <div className={styles.buttonGroup}>
-        <Button
+      <ButtonGroup>
+        <ButtonAdd
           variant="contained"
-          className={styles.buttonAdd}
           onMouseDown={list ? () => handleAddList() : () => handleAddCard(id)}
         >
           {buttonTitle}
-        </Button>
-        <Button
+        </ButtonAdd>
+        <ButtonClose
           variant="contained"
-          className={styles.buttonClose}
           color="secondary"
           startIcon={<DeleteIcon />}
         >
           close
-        </Button>
-      </div>
+        </ButtonClose>
+      </ButtonGroup>
     </div>
   );
 };
