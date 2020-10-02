@@ -25,7 +25,8 @@ const TrelloForm = ({
   const placeholder = list
     ? `Enter list title...`
     : `Enter a title for this card`;
-  const buttonTitle = list ? `Add List` : `Add Card`;
+  const buttonAddTitle = list ? `Add List` : `Add Card`;
+  console.log("test", text);
 
   return (
     <div>
@@ -43,7 +44,7 @@ const TrelloForm = ({
           variant="contained"
           onMouseDown={list ? () => handleAddList() : () => handleAddCard(id)}
         >
-          {buttonTitle}
+          {buttonAddTitle}
         </ButtonAdd>
         <ButtonClose
           variant="contained"
