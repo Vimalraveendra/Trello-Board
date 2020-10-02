@@ -1,11 +1,12 @@
 import React from "react";
 // import Styles from './TrelloCard.modules.css'
-import { CardContainer } from "./TrelloCard.styles";
+import { CardContainer, CardTitle, CardIcon, Card } from "./TrelloCard.styles";
 
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
+// import Card from "@material-ui/core/Card";
+// import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import { Draggable } from "react-beautiful-dnd";
+// import { Icon } from "@material-ui/core";
 
 const TrelloCard = ({ text, id, index }) => {
   return (
@@ -17,9 +18,10 @@ const TrelloCard = ({ text, id, index }) => {
           ref={provided.innerRef}
         >
           <Card>
-            <CardContent>
-              <Typography gutterBottom>{text}</Typography>
-            </CardContent>
+            <CardTitle>
+              <Typography>{text}</Typography>
+              <CardIcon style={{ fontSize: 18 }}>edit</CardIcon>
+            </CardTitle>
           </Card>
         </CardContainer>
       )}
