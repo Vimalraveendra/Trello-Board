@@ -15,6 +15,9 @@
   opacity: 1;
   background-color: rgba(0, 0, 0, 0.13);
 }
+.list:hover {
+  background-color: rgba(180, 179, 185, 0.5);
+}
 
 .cardList {
   color: inherit;
